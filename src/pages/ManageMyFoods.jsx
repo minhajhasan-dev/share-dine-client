@@ -10,7 +10,6 @@ const ManageMyFoods = () => {
   const [myFoods, setMyFoods] = useState([]);
   const { user } = useContext(AuthContext);
 
-
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_API_URL}/allFoods`).then((response) => {
       // filter the foods based on the user email
@@ -21,6 +20,7 @@ const ManageMyFoods = () => {
     });
   }, []);
 
+  console.log(myFoods);
   const {
     register,
     handleSubmit,
@@ -30,7 +30,6 @@ const ManageMyFoods = () => {
       donatorName: `${user.displayName}`,
       donatorEmail: `${user.email}`,
       donatorImage: `${user.photoURL}`,
-      expiredDate: new Date().toLocaleDateString(),
     },
   });
   const handleDelete = (id) => {
@@ -80,6 +79,19 @@ const ManageMyFoods = () => {
   };
   const handleUpdate = (data) => {
     console.log(data);
+    axios
+      .put(`${import.meta.env.VITE_API_URL}/allFoods/${data._id}`, data)
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Food Updated Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   // this function will open a modal with a form to update the food
@@ -326,12 +338,6 @@ const ManageMyFoods = () => {
                                       })}
                                       className="input input-bordered w-full"
                                     />
-                                    {/* <DatePicker
-                  {...register("expiredDate")}
-                  className="input input-bordered w-full"
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                /> */}
 
                                     {errors.expiredDate && (
                                       <span className="text-red-500"></span>
@@ -475,7 +481,7 @@ const ManageMyFoods = () => {
                               </div>
 
                               <button className="btn w-full hover:bg-[#2B3440] bg-[#2B3440] text-[#D7DDE4] ">
-                                Add Food
+                                Update Food
                               </button>
                             </form>
                             <div className="modal-action">

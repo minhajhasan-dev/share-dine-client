@@ -20,7 +20,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        // loader: () => fetch(`${import.meta.env.VITE_API_URL}/demo`),
       },
       {
         path: "/login",
@@ -57,10 +56,6 @@ const router = createBrowserRouter([
             <MyFoodRequests></MyFoodRequests>
           </PrivateRoute>
         ),
-        loader: () =>
-          fetch(`${import.meta.env.VITE_API_URL}/requestedFood`, {
-            credentials: "include",
-          }),
       },
       {
         path: "/food/:id",

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
   return (
     <div
@@ -16,7 +18,9 @@ const Banner = () => {
             ShareDine connects you with neighbors to share delicious food and
             fight food waste.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <Link to={"/add-food"} className="btn btn-primary">
+            Add Food
+          </Link>
         </div>
       </div>
     </div>

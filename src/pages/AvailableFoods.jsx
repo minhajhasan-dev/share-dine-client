@@ -61,7 +61,7 @@ const AvailableFoods = () => {
         </div>
       </form>
       {/* available foods */}
-      <div className="container grid grid-cols-1 justify-items-center gap-5  md:grid-cols-2 lg:grid-cols-4 p-2  mx-auto">
+      <div className="container mb-6 grid grid-cols-1 justify-items-center gap-5  md:grid-cols-2 lg:grid-cols-4 p-2  mx-auto">
         {foods
           .filter((food) => food.foodStatus === "available")
           .map((food) => (

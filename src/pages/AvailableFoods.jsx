@@ -81,11 +81,11 @@ const AvailableFoods = () => {
 
               {/* avatar here right-2 top-40 */}
 
-              <div className="flex items-center px-6 py-3 bg-gray-900">
-                <h1 className="mx-0 flex gap-2 font-semibold text-white">
-                  <FaGift className="w-5 h-5 fill-current" />
+              <div className="flex gap-2 items-center px-6 py-3 bg-gray-900">
+                <FaGift className="w-5 h-5 fill-white" />
+                <h1 className="mx-0 text-sm w-full font-semibold text-white">
                   {food.foodName}
-                  <span className="text-gray-400">by</span>
+                  <span className="text-gray-400"> by </span>
                   {food.donatorName}
                 </h1>
               </div>

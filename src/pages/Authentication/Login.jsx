@@ -28,7 +28,8 @@ const Login = () => {
       toast.error("Failed to sign in");
     }
   };
-  const { signIn, signInWithGoogle } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, signInWithGithub, setLoading } =
+    useContext(AuthContext);
   // handle google signin async await way
   const handleGoogleSignIn = async () => {
     try {
@@ -38,6 +39,19 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       toast.error("Failed to sign in with google");
+      setLoading(false);
+    }
+  };
+  // github signin
+  const handleGithubSignIn = async () => {
+    try {
+      await signInWithGithub();
+      toast.success("Sign in with Github successfully");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to sign in with Github");
+      setLoading(false);
     }
   };
 
@@ -61,7 +75,10 @@ const Login = () => {
             </button>
             <div className="divider lg:divider-horizontal"></div>
 
-            <button className="btn btn-ghost  flex items-center gap-2">
+            <button
+              onClick={handleGithubSignIn}
+              className="btn btn-ghost  flex items-center gap-2"
+            >
               <FaGithub /> Sign in with Github
             </button>
           </div>

@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import { FaGift, FaLocationDot } from "react-icons/fa6";
 import { GiMeal } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -127,9 +128,12 @@ const AvailableFoods = () => {
                   </div>
                 </div>
                 {/* button here */}
-                <button className="btn w-full hover:bg-[#2B3440] bg-[#2B3440] text-[#D7DDE4] ">
-                  View
-                </button>
+                <Link
+                  to={`/food/${food._id}`}
+                  className="btn w-full hover:bg-[#2B3440] bg-[#2B3440] text-[#D7DDE4] "
+                >
+                  View Details
+                </Link>
               </div>
             </div>
           ))}

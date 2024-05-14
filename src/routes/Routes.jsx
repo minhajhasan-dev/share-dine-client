@@ -4,6 +4,7 @@ import AddFood from "../pages/AddFood";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import AvailableFoods from "../pages/AvailableFoods";
+import FoodDetails from "../pages/FoodDetails";
 import Home from "../pages/Home";
 import ManageMyFoods from "../pages/ManageMyFoods";
 import MyFoodRequests from "../pages/MyFoodRequests";
@@ -56,6 +57,16 @@ const router = createBrowserRouter([
             <MyFoodRequests></MyFoodRequests>
           </PrivateRoute>
         ),
+        loader: () =>
+          fetch(`${import.meta.env.VITE_API_URL}/requestedFood`, {
+            credentials: "include",
+          }),
+      },
+      {
+        path: "/food/:id",
+        element: <FoodDetails></FoodDetails>,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/allFoods/${params.id}`),
       },
     ],
   },

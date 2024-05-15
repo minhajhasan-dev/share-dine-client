@@ -1,6 +1,8 @@
+import "animate.css";
 import axios from "axios";
 import Lottie from "lottie-react";
 import { useContext, useEffect, useState } from "react";
+import { Slide, Zoom } from "react-awesome-reveal";
 import toast from "react-hot-toast";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import { FaGift, FaLocationDot } from "react-icons/fa6";
@@ -33,8 +35,12 @@ const FeaturedFoods = () => {
   }
   return (
     <div className="mt-10 text-center">
-      <h1 className="text-3xl mb-5 font-lobster">Featured Foods</h1>
+      <Slide>
+        {" "}
+        <h1 className="text-3xl mb-5 font-lobster">Featured Foods</h1>
+      </Slide>
       {/* filtered foods will be show here */}
+      <Zoom>
       <div className="container mb-6 grid grid-cols-1 justify-items-center gap-5 md:max-w-2xl lg:max-w-5xl  md:grid-cols-2 lg:grid-cols-3 p-2  mx-auto">
         {foods
           .filter((food) => food.foodStatus === "available")
@@ -112,6 +118,7 @@ const FeaturedFoods = () => {
             </div>
           ))}
       </div>
+      </Zoom>
       {/*  Show All  button */}
       <Link
         to={"/available-foods"}

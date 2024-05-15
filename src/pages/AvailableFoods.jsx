@@ -7,6 +7,7 @@ import { GiMeal } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import loadingSpinner from "../assets/loading.json";
 import { AuthContext } from "../provider/AuthProvider";
+import { Zoom } from "react-awesome-reveal";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -86,6 +87,7 @@ const AvailableFoods = () => {
         </div>
       </form>
       {/* available foods */}
+      <Zoom>
       <div
         className={`container mb-6 grid grid-cols-1 justify-items-center gap-5 p-2  mx-auto ${
           layout === 2 ? "md:grid-cols-2 max-w-2xl" : "md:grid-cols-3 max-w-5xl"
@@ -167,6 +169,7 @@ const AvailableFoods = () => {
             </div>
           ))}
       </div>
+      </Zoom>
     </div>
   );
 };

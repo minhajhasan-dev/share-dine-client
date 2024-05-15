@@ -5,6 +5,7 @@ import { AuthContext } from "../provider/AuthProvider";
 const MyFoodRequests = () => {
   const [foods, setFoods] = useState([]);
   const { user } = useContext(AuthContext);
+const {setLoading} = useContext(AuthContext)
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_API_URL}/requestedFood`).then((res) => {
       // filter with usr email and set to the state
@@ -12,6 +13,7 @@ const MyFoodRequests = () => {
         (food) => food.userEmail === user.email
       );
       setFoods(filteredFoods);
+      setLoading(false)
     });
   }, []);
   console.log(foods);

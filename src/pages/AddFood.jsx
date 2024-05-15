@@ -7,6 +7,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
+  const { setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
@@ -23,6 +24,7 @@ const AddFood = () => {
 
   const handleAddFood = (data) => {
     console.log(data);
+    setLoading(false);
     axios.post("http://localhost:5000/allFoods", data).then((response) => {
       console.log(response.data);
       if (response.data.insertedId) {

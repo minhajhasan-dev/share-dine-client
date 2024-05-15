@@ -4,11 +4,15 @@ import { RiDeleteBin2Fill, RiEditCircleFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import Lottie from "lottie-react";
+import loadingSpinner from "../assets/loading.json";
 
 const ManageMyFoods = () => {
+  const { loading, setLoading } = useContext(AuthContext);
   const [myFoods, setMyFoods] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
+    setLoading(true);
     axios.get(`${import.meta.env.VITE_API_URL}/allFoods`).then((response) => {
       // filter the foods based on the user email
       const foods = response.data.filter(
@@ -16,8 +20,8 @@ const ManageMyFoods = () => {
       );
       setMyFoods(foods);
     });
+    setLoading(false);
   }, []);
-
 
   const handleDelete = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -65,9 +69,13 @@ const ManageMyFoods = () => {
       });
   };
 
-  // this function will open a modal with a form to update the food
-
-  console.log(user.email);
+  if (loading) {
+    return (
+      <div className="flex min-h-[calc(100vh-268px)] justify-center items-center">
+        <Lottie className="w-56 h-56" animationData={loadingSpinner}></Lottie>
+      </div>
+    );
+  }
   return (
     <section className="container px-4  min-h-[calc(100vh-267px)] mx-auto pt-12">
       <div className="flex justify-center items-center gap-x-3">
@@ -129,7 +137,12 @@ const ManageMyFoods = () => {
                   {myFoods.map((food) => (
                     <tr key={food._id}>
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                        {food.foodName}
+                        <Link
+                          className="text-amber-500 hover:animate-pulse hover:text-amber-700 hover:underline"
+                          to={`/food/${food._id}`}
+                        >
+                          {food.foodName}
+                        </Link>
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap hidden md:block">

@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import Lottie from "lottie-react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import { FaGift, FaLocationDot } from "react-icons/fa6";
 import { GiMeal } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import loadingSpinner from "../assets/loading.json";
+import { AuthContext } from "../provider/AuthProvider";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("fresh");
+  const { loading, setLoading } = useContext(AuthContext);
 
   useEffect(() => {
     fetch(
@@ -17,6 +21,7 @@ const AvailableFoods = () => {
       .then((res) => res.json())
       .then((data) => {
         setFoods(data);
+        setLoading(false);
       })
       .catch(() => {
         toast.error("Failed to fetch foods");
@@ -33,6 +38,13 @@ const AvailableFoods = () => {
   const handleChangeLayout = () => {
     setLayout(layout === 3 ? 2 : 3);
   };
+  if (loading) {
+    return (
+      <div className="flex min-h-[calc(100vh-268px)] justify-center items-center">
+        <Lottie className="w-56 h-56" animationData={loadingSpinner}></Lottie>
+      </div>
+    );
+  }
   return (
     <div className="min-h-[calc(100vh-150px)]">
       {/* sub nav here */}

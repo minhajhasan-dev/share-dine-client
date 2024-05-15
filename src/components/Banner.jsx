@@ -18,7 +18,7 @@ const Banner = () => {
             ShareDine connects you with neighbors to share delicious food and
             fight food waste.
           </p>
-          <Link to={"/add-food"} className="btn btn-primary">
+          <Link to={"/add-food"} className="btn mb-5 hover:bg-[#2B3440] bg-[#2B3440] text-white">
             Add Food
           </Link>
         </div>

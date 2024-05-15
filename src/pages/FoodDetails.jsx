@@ -11,9 +11,8 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const FoodDetails = () => {
   const navigate = useNavigate();
-
   const { user } = useContext(AuthContext);
-  const userEmail = user.email;
+  const userEmail = user?.email;
   const {
     _id,
     donatorName,

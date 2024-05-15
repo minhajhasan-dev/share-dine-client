@@ -1,24 +1,36 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import Lottie from "lottie-react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import { FaGift, FaLocationDot } from "react-icons/fa6";
 import { GiMeal } from "react-icons/gi";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
+import loadingSpinner from "../assets/loading.json";
+import { AuthContext } from "../provider/AuthProvider";
 
 const FeaturedFoods = () => {
+  const { loading, setLoading } = useContext(AuthContext);
   const [foods, setFoods] = useState([]);
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/featuredFoods`)
       .then((response) => {
         setFoods(response.data);
+        setLoading(false);
       })
       .catch(() => {
         toast.error("Failed to fetch featured foods");
       });
-  }, [foods]);
-
+  }, [foods, setLoading]);
+  if (loading) {
+    return (
+      <div className="flex min-h-[calc(100vh-268px)] justify-center items-center">
+        <Lottie className="w-56 h-56" animationData={loadingSpinner}></Lottie>
+      </div>
+    );
+  }
   return (
     <div className="mt-10 text-center">
       <h1 className="text-3xl mb-5 font-lobster">Featured Foods</h1>
@@ -101,8 +113,11 @@ const FeaturedFoods = () => {
           ))}
       </div>
       {/*  Show All  button */}
-      <Link to={"/available-foods"} className="btn mb-5 btn-primary mt-5">
-        Show All
+      <Link
+        to={"/available-foods"}
+        className="btn mb-5 hover:bg-[#2B3440] bg-[#2B3440] text-white"
+      >
+        Show All <IoIosArrowDropdownCircle className="animate-bounce size-4" />
       </Link>
     </div>
   );

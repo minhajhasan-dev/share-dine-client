@@ -1,7 +1,6 @@
 import axios from "axios";
 import Lottie from "lottie-react";
 import { useContext, useEffect, useState } from "react";
-import { Slide, Zoom } from "react-awesome-reveal";
 import { RiDeleteBin2Fill, RiEditCircleFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -80,120 +79,128 @@ const ManageMyFoods = () => {
   return (
     <section className="container px-4  min-h-[calc(100vh-267px)] mx-auto pt-12">
       <div className="flex justify-center items-center gap-x-3">
-      <Slide> <h1 className="text-3xl font-lobster">Manage My Foods</h1></Slide>
+        <h1
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          className="text-3xl font-lobster"
+        >
+          Manage My Foods
+        </h1>
       </div>
-      <Zoom>
-        <div className="flex flex-col mt-6">
-          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-              <div className="overflow-hidden border border-gray-200  md:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
-                      >
-                        <div className="flex items-center gap-x-3">
-                          <span>Food Name</span>
+      <div
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+        className="flex flex-col mt-6"
+      >
+        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <div className="overflow-hidden border border-gray-200  md:rounded-lg">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                    >
+                      <div className="flex items-center gap-x-3">
+                        <span>Food Name</span>
+                      </div>
+                    </th>
+
+                    <th
+                      scope="col"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 hidden md:block"
+                    >
+                      <span>Quantity</span>
+                    </th>
+
+                    <th
+                      scope="col"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                    >
+                      <button className="flex items-center gap-x-2">
+                        <span>Expiry</span>
+                      </button>
+                    </th>
+
+                    <th
+                      scope="col"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                    >
+                      Pickup Location
+                    </th>
+
+                    <th
+                      scope="col"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 hidden md:block"
+                    >
+                      Status
+                    </th>
+
+                    <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody className="bg-white divide-y divide-gray-200 ">
+                  {myFoods.map((food) => (
+                    <tr key={food._id}>
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        <Link
+                          className="text-amber-500 hover:animate-pulse hover:text-amber-700 hover:underline"
+                          to={`/food/${food._id}`}
+                        >
+                          {food.foodName}
+                        </Link>
+                      </td>
+
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap hidden md:block">
+                        {food.foodQuantity}
+                      </td>
+
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {food.expiredDate}
+                      </td>
+                      <td className="px-4 py-4 text-sm whitespace-nowrap">
+                        <div className="flex items-center gap-x-2">
+                          {food.pickupLocation}
                         </div>
-                      </th>
+                      </td>
+                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                        <div className="lg:inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-yellow-100/60 text-yellow-500 hidden md:block">
+                          <span className="h-1.5 w-1.5 animate-ping rounded-full bg-yellow-500"></span>
+                          <h2 className="text-sm font-normal ">
+                            {" "}
+                            {food.foodStatus}{" "}
+                          </h2>
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 flex md:static absolute right-1 items-center gap-2 text-sm whitespace-nowrap">
+                        <Link
+                          to={`/update-food/${food._id}`}
+                          title="Update"
+                          className="text-gray-500 text-xl transition-colors duration-200   hover:text-green-500 focus:outline-none disabled:cursor-not-allowed"
+                        >
+                          <RiEditCircleFill />
+                        </Link>
 
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 hidden md:block"
-                      >
-                        <span>Quantity</span>
-                      </th>
-
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
-                      >
-                        <button className="flex items-center gap-x-2">
-                          <span>Expiry</span>
+                        <button
+                          onClick={() => handleDelete(food._id)}
+                          title="Delete"
+                          className="text-gray-500 text-xl transition-colors duration-200   hover:text-red-500 focus:outline-none disabled:cursor-not-allowed"
+                        >
+                          <RiDeleteBin2Fill />
                         </button>
-                      </th>
-
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
-                      >
-                        Pickup Location
-                      </th>
-
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 hidden md:block"
-                      >
-                        Status
-                      </th>
-
-                      <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
-                        Actions
-                      </th>
+                      </td>
                     </tr>
-                  </thead>
-
-                  <tbody className="bg-white divide-y divide-gray-200 ">
-                    {myFoods.map((food) => (
-                      <tr key={food._id}>
-                        <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                          <Link
-                            className="text-amber-500 hover:animate-pulse hover:text-amber-700 hover:underline"
-                            to={`/food/${food._id}`}
-                          >
-                            {food.foodName}
-                          </Link>
-                        </td>
-
-                        <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap hidden md:block">
-                          {food.foodQuantity}
-                        </td>
-
-                        <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                          {food.expiredDate}
-                        </td>
-                        <td className="px-4 py-4 text-sm whitespace-nowrap">
-                          <div className="flex items-center gap-x-2">
-                            {food.pickupLocation}
-                          </div>
-                        </td>
-                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="lg:inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-yellow-100/60 text-yellow-500 hidden md:block">
-                            <span className="h-1.5 w-1.5 animate-ping rounded-full bg-yellow-500"></span>
-                            <h2 className="text-sm font-normal ">
-                              {" "}
-                              {food.foodStatus}{" "}
-                            </h2>
-                          </div>
-                        </td>
-                        <td className="px-4 py-4 flex md:static absolute right-1 items-center gap-2 text-sm whitespace-nowrap">
-                          <Link
-                            to={`/update-food/${food._id}`}
-                            title="Update"
-                            className="text-gray-500 text-xl transition-colors duration-200   hover:text-green-500 focus:outline-none disabled:cursor-not-allowed"
-                          >
-                            <RiEditCircleFill />
-                          </Link>
-
-                          <button
-                            onClick={() => handleDelete(food._id)}
-                            title="Delete"
-                            className="text-gray-500 text-xl transition-colors duration-200   hover:text-red-500 focus:outline-none disabled:cursor-not-allowed"
-                          >
-                            <RiDeleteBin2Fill />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-      </Zoom>
+      </div>
     </section>
   );
 };

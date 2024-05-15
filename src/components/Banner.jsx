@@ -11,14 +11,21 @@ const Banner = () => {
     >
       <div className="hero-content text-center">
         <div className="max-w-md">
-          <h1 className="text-5xl font-bold">
+          <h1
+            data-aos="zoom-in-down"
+            data-aos-duration="1000"
+            className="text-5xl font-bold"
+          >
             Welcome to <span className="font-lobster">ShareDine</span>
           </h1>
-          <p className="py-6">
+          <p data-aos="zoom-in-down"  data-aos-duration="1000" className="py-6">
             ShareDine connects you with neighbors to share delicious food and
             fight food waste.
           </p>
-          <Link to={"/add-food"} className="btn mb-5 hover:bg-[#2B3440] bg-[#2B3440] text-white">
+          <Link
+            to={"/add-food"}
+            className="btn mb-5 hover:bg-[#2B3440] bg-[#2B3440] text-white"
+          >
             Add Food
           </Link>
         </div>

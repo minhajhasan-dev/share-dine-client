@@ -48,10 +48,14 @@ const UpdateFood = () => {
   }, [id]);
   return (
     <div className="max-w-3xl my-12  mx-auto">
-      <h1 className="text-3xl text-center my-10 font-lobster mb-5">
+      <h1
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+        className="text-3xl text-center my-10 font-lobster mb-5"
+      >
         Update Food
       </h1>
-      <form
+      <form data-aos="zoom-in"  data-aos-duration="1000"
         onSubmit={handleSubmit(handleUpdate)}
         className="border m-4 md:m-5 p-5  rounded-xl shadow-lg "
       >

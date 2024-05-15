@@ -34,7 +34,7 @@ const AvailableFoods = () => {
     setLayout(layout === 3 ? 2 : 3);
   };
   return (
-    <div className=" min-h-[calc(100vh-150px)]">
+    <div className="min-h-[calc(100vh-150px)]">
       {/* sub nav here */}
       <form
         onSubmit={handleSearch}
@@ -75,9 +75,9 @@ const AvailableFoods = () => {
       </form>
       {/* available foods */}
       <div
-        className={`container mb-6 grid grid-cols-1 justify-items-center gap-5 md:${
-          layout === 2 ? "max-w-2xl" : "max-w-5xl"
-        }  md:grid-cols-${layout} p-2  mx-auto`}
+        className={`container mb-6 grid grid-cols-1 justify-items-center gap-5 p-2  mx-auto ${
+          layout === 2 ? "md:grid-cols-2 max-w-2xl" : "md:grid-cols-3 max-w-5xl"
+        }`}
       >
         {foods
           .filter((food) => food.foodStatus === "available")

@@ -23,7 +23,7 @@ const FeaturedFoods = () => {
     <div className="mt-10 text-center">
       <h1 className="text-3xl mb-5 font-lobster">Featured Foods</h1>
       {/* filtered foods will be show here */}
-      <div className="container mb-6 grid grid-cols-1 justify-items-center gap-5 md:max-w-2xl  lg:max-w-[1350px] md:grid-cols-2 lg:grid-cols-4 p-2  mx-auto">
+      <div className="container mb-6 grid grid-cols-1 justify-items-center gap-5 md:max-w-2xl lg:max-w-5xl  md:grid-cols-2 lg:grid-cols-3 p-2  mx-auto">
         {foods
           .filter((food) => food.foodStatus === "available")
           .map((food) => (

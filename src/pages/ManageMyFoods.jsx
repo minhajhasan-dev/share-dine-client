@@ -199,7 +199,3 @@ const ManageMyFoods = () => {
 };
 
 export default ManageMyFoods;
-// test 1
-// test 2
-// test 3
-// test 4

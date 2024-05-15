@@ -21,6 +21,7 @@ const FeaturedFoods = () => {
       .then((response) => {
         setFoods(response.data);
         setLoading(false);
+        console.log(response.data);
       })
       .catch(() => {
         toast.error("Failed to fetch featured foods");
@@ -124,7 +125,7 @@ const FeaturedFoods = () => {
         to={"/available-foods"}
         className="btn mb-5 hover:bg-[#2B3440] bg-[#2B3440] text-white"
       >
-        Show All <IoIosArrowDropdownCircle className="animate-bounce size-4" />
+        Show All <IoIosArrowDropdownCircle className="animate-pulse size-4" />
       </Link>
     </div>
   );

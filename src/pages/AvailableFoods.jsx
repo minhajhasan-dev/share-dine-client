@@ -1,5 +1,6 @@
 import Lottie from "lottie-react";
 import { useContext, useEffect, useState } from "react";
+import { Zoom } from "react-awesome-reveal";
 import toast from "react-hot-toast";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import { FaGift, FaLocationDot } from "react-icons/fa6";
@@ -7,7 +8,6 @@ import { GiMeal } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import loadingSpinner from "../assets/loading.json";
 import { AuthContext } from "../provider/AuthProvider";
-import { Zoom } from "react-awesome-reveal";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -27,7 +27,7 @@ const AvailableFoods = () => {
       .catch(() => {
         toast.error("Failed to fetch foods");
       });
-  }, [sort, search]);
+  }, [sort, setLoading, search]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -88,87 +88,89 @@ const AvailableFoods = () => {
       </form>
       {/* available foods */}
       <Zoom>
-      <div
-        className={`container mb-6 grid grid-cols-1 justify-items-center gap-5 p-2  mx-auto ${
-          layout === 2 ? "md:grid-cols-2 max-w-2xl" : "md:grid-cols-3 max-w-5xl"
-        }`}
-      >
-        {foods
-          .filter((food) => food.foodStatus === "available")
-          .map((food) => (
-            <div
-              key={food._id}
-              className="w-full relative max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
-            >
-              <img
-                className="object-cover  object-center w-full h-44"
-                src={food.foodImage}
-                alt="avatar"
-              />
-              <div className="badge absolute right-2 top-2 badge-neutral ">
-                {" "}
-                <p className="animate-pulse"> {food.foodStatus}</p>
-              </div>
+        <div
+          className={`container mb-6 grid grid-cols-1 justify-items-center gap-5 p-2  mx-auto ${
+            layout === 2
+              ? "md:grid-cols-2 max-w-2xl"
+              : "md:grid-cols-3 max-w-5xl"
+          }`}
+        >
+          {foods
+            .filter((food) => food.foodStatus === "available")
+            .map((food) => (
+              <div
+                key={food._id}
+                className="w-full relative max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+              >
+                <img
+                  className="object-cover  object-center w-full h-44"
+                  src={food.foodImage}
+                  alt="avatar"
+                />
+                <div className="badge absolute right-2 top-2 badge-neutral ">
+                  {" "}
+                  <p className="animate-pulse"> {food.foodStatus}</p>
+                </div>
 
-              {/* avatar here right-2 top-40 */}
+                {/* avatar here right-2 top-40 */}
 
-              <div className="flex gap-2 items-center px-6 py-3 bg-gray-900">
-                <FaGift className="w-5 h-5 fill-white" />
-                <h1 className="mx-0 text-sm w-full font-semibold text-white">
-                  {food.foodName}
-                  <span className="text-gray-400"> by </span>
-                  {food.donatorName}
-                </h1>
-              </div>
-
-              <div className="px-6 py-4">
-                <div className="border mb-2 bg-stone-50 rounded-lg p-3">
-                  <span className=" text-sm font-semibold text-gray-80">
-                    <p className="text-center">Special Notes from Donator</p>
-                  </span>
-                  <h1 className=" text-xs font-semibold text-gray-600 text-center">
-                    {food.additionalNotes}
+                <div className="flex gap-2 items-center px-6 py-3 bg-gray-900">
+                  <FaGift className="w-5 h-5 fill-white" />
+                  <h1 className="mx-0 text-sm w-full font-semibold text-white">
+                    {food.foodName}
+                    <span className="text-gray-400"> by </span>
+                    {food.donatorName}
                   </h1>
                 </div>
-                <div className="flex gap-2 ">
-                  <div className="border flex flex-col items-start gap-1 mb-2 space-y-2 bg-stone-50 rounded-lg p-3 w-fit ">
-                    <span className="flex gap-1 text-sm font-semibold items-center text-gray-80">
-                      <GiMeal className="text-xl" />
-                      Food For {food.foodQuantity} people
+
+                <div className="px-6 py-4">
+                  <div className="border mb-2 bg-stone-50 rounded-lg p-3">
+                    <span className=" text-sm font-semibold text-gray-80">
+                      <p className="text-center">Special Notes from Donator</p>
                     </span>
-                    <span className="flex gap-1 text-sm font-semibold items-center text-gray-80">
-                      <BsCalendar2DateFill className="text-xl" />
-                      Collect by {food.expiredDate}
-                    </span>
-                    <span className="flex gap-1 text-sm font-semibold items-center text-gray-80">
-                      <FaLocationDot className="text-xl" />
-                      Collect at {food.pickupLocation}
-                    </span>
+                    <h1 className=" text-xs font-semibold text-gray-600 text-center">
+                      {food.additionalNotes}
+                    </h1>
                   </div>
-                  <div className="border relative flex flex-col justify-center  items-start gap-1 mb-2 space-y-2 bg-stone-50 rounded-lg w-auto flex-1 ">
-                    <div className="avatar bottom-10 right-4 absolute">
-                      <div className="w-10  rounded-full ring ">
-                        <img src={food.donatorImage} />
-                      </div>
+                  <div className="flex gap-2 ">
+                    <div className="border flex flex-col items-start gap-1 mb-2 space-y-2 bg-stone-50 rounded-lg p-3 w-fit ">
+                      <span className="flex gap-1 text-sm font-semibold items-center text-gray-80">
+                        <GiMeal className="text-xl" />
+                        Food For {food.foodQuantity} people
+                      </span>
+                      <span className="flex gap-1 text-sm font-semibold items-center text-gray-80">
+                        <BsCalendar2DateFill className="text-xl" />
+                        Collect by {food.expiredDate}
+                      </span>
+                      <span className="flex gap-1 text-sm font-semibold items-center text-gray-80">
+                        <FaLocationDot className="text-xl" />
+                        Collect at {food.pickupLocation}
+                      </span>
                     </div>
-                    <span className=" w-full text-xs font-semibold text-gray-600 text-center">
-                      <p className="text-center absolute bottom-4 w-full">
-                        Donator
-                      </p>
-                    </span>
+                    <div className="border relative flex flex-col justify-center  items-start gap-1 mb-2 space-y-2 bg-stone-50 rounded-lg w-auto flex-1 ">
+                      <div className="avatar bottom-10 right-4 absolute">
+                        <div className="w-10  rounded-full ring ">
+                          <img src={food.donatorImage} />
+                        </div>
+                      </div>
+                      <span className=" w-full text-xs font-semibold text-gray-600 text-center">
+                        <p className="text-center absolute bottom-4 w-full">
+                          Donator
+                        </p>
+                      </span>
+                    </div>
                   </div>
+                  {/* button here */}
+                  <Link
+                    to={`/food/${food._id}`}
+                    className="btn w-full hover:bg-[#2B3440] bg-[#2B3440] text-[#D7DDE4] "
+                  >
+                    View Details
+                  </Link>
                 </div>
-                {/* button here */}
-                <Link
-                  to={`/food/${food._id}`}
-                  className="btn w-full hover:bg-[#2B3440] bg-[#2B3440] text-[#D7DDE4] "
-                >
-                  View Details
-                </Link>
               </div>
-            </div>
-          ))}
-      </div>
+            ))}
+        </div>
       </Zoom>
     </div>
   );

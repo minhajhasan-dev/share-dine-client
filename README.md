@@ -1,9 +1,29 @@
-# React + Vite
+# Share Dine Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Share Dine! This is a platform where food enthusiasts can connect and share their favorite recipes.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# b9a11-client-side-minhajhasan-dev
+- User Registration: Create an account to access all the features of Share Dine Client.
+- Recipe Sharing: Share your favorite recipes with the community and discover new ones.
+- Recipe Search: Easily search for recipes based on ingredients, cuisine, or dietary preferences.
+- Recipe Rating: Rate and review recipes to help others find the best dishes.
+- Social Interaction: Connect with other users, follow their profiles, and engage in discussions.
+
+## Packages:
+- "@emotion/react": 
+- "axios":
+- "firebase":
+- "lottie-react":
+- "react-awesome-reveal": 
+- "react-hook-form": 
+- "react-hot-toast": 
+- "react-icons": 
+- "react-loading-skeleton":
+- "sweetalert2": 
+
+
+
+## License
+
+Share Dine Client is released under the [MIT License](LICENSE).

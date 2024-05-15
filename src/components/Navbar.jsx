@@ -190,58 +190,6 @@ const Navbar = () => {
 
                         <a
                           href="#"
-                          className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          view profile
-                        </a>
-
-                        <a
-                          href="#"
-                          className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          Settings
-                        </a>
-
-                        <a
-                          href="#"
-                          className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          Keyboard shortcuts
-                        </a>
-
-                        <hr className="border-gray-200 dark:border-gray-700 " />
-
-                        <a
-                          href="#"
-                          className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          Company profile
-                        </a>
-
-                        <a
-                          href="#"
-                          className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          Team
-                        </a>
-
-                        <a
-                          href="#"
-                          className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          Invite colleagues
-                        </a>
-
-                        <hr className="border-gray-200 dark:border-gray-700 " />
-
-                        <a
-                          href="#"
-                          className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          Help
-                        </a>
-                        <a
-                          href="#"
                           onClick={handleLogOut}
                           className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
                         >

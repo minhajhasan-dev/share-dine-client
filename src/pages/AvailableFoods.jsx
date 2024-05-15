@@ -28,7 +28,11 @@ const AvailableFoods = () => {
     const text = e.target.search.value;
     setSearch(text);
   };
+  const [layout, setLayout] = useState(3);
 
+  const handleChangeLayout = () => {
+    setLayout(layout === 3 ? 2 : 3);
+  };
   return (
     <div className=" min-h-[calc(100vh-150px)]">
       {/* sub nav here */}
@@ -48,6 +52,15 @@ const AvailableFoods = () => {
               className="input input-bordered lg:w-96 md:w-auto w-36  "
             />
           </div>
+          <div className="form-control">
+            <button
+              onClick={handleChangeLayout}
+              className="btn hidden md:block w-full hover:bg-[#2B3440] bg-[#2B3440] text-white"
+            >
+              {" "}
+              Change Layout
+            </button>
+          </div>
           <div className="form-control text-sm">
             <select
               onChange={(e) => setSort(e.target.value)}
@@ -61,7 +74,11 @@ const AvailableFoods = () => {
         </div>
       </form>
       {/* available foods */}
-      <div className="container mb-6 grid grid-cols-1 justify-items-center gap-5  md:grid-cols-2 lg:grid-cols-4 p-2  mx-auto">
+      <div
+        className={`container mb-6 grid grid-cols-1 justify-items-center gap-5 md:${
+          layout === 2 ? "max-w-2xl" : "max-w-5xl"
+        }  md:grid-cols-${layout} p-2  mx-auto`}
+      >
         {foods
           .filter((food) => food.foodStatus === "available")
           .map((food) => (

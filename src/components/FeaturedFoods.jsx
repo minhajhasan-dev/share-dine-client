@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BsCalendar2DateFill } from "react-icons/bs";
@@ -7,25 +8,22 @@ import { Link } from "react-router-dom";
 
 const FeaturedFoods = () => {
   const [foods, setFoods] = useState([]);
-  const [sort, setSort] = useState("fresh");
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/allFoods?sort=${sort}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const sortedData = data.sort((a, b) => b.quantity - a.quantity);
-        setFoods(sortedData);
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/featuredFoods`)
+      .then((response) => {
+        setFoods(response.data);
       })
       .catch(() => {
-        toast.error("Failed to fetch foods");
+        toast.error("Failed to fetch featured foods");
       });
-  }, [sort]);
+  }, [foods]);
 
   return (
     <div className="mt-10 text-center">
       <h1 className="text-3xl mb-5 font-lobster">Featured Foods</h1>
       {/* filtered foods will be show here */}
-      {/* available foods */}
-      <div className="container mb-6 grid grid-cols-1 justify-items-center gap-5  md:grid-cols-2 lg:grid-cols-4 p-2  mx-auto">
+      <div className="container mb-6 grid grid-cols-1 justify-items-center gap-5 md:max-w-2xl  lg:max-w-[1350px] md:grid-cols-2 lg:grid-cols-4 p-2  mx-auto">
         {foods
           .filter((food) => food.foodStatus === "available")
           .map((food) => (

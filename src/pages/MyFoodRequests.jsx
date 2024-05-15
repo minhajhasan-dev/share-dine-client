@@ -18,11 +18,11 @@ const MyFoodRequests = () => {
   return (
     <div className=" container mx-auto text-center my-10 min-h-[calc(100vh-150px)]">
       <h1 className="text-3xl font-lobster">My Food Requests</h1>
-      <div className="flex flex-col mt-6">
+      <div className="flex flex-col mb-6 mt-6">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+          <div className="inline-block lg:min-w-full md:min-w-2xl  py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200  md:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
+              <table className="min-w-full container mx-auto divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr className="">
                     <th
@@ -36,6 +36,14 @@ const MyFoodRequests = () => {
                     <th
                       scope="col"
                       className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                    >
+                      <div className="flex font-semibold justify-center items-center gap-x-3">
+                        <span>Food Image</span>
+                      </div>
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right  text-gray-500"
                     >
                       <div className="flex font-semibold justify-center items-center gap-x-3">
                         <span>Donar Name</span>
@@ -67,21 +75,28 @@ const MyFoodRequests = () => {
                 <tbody className="bg-white divide-y divide-gray-200 ">
                   {foods.map((food) => (
                     <tr key={food._id}>
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                      <td className=" py-2 text-sm text-gray-500  whitespace-nowrap">
+                        <div className="avatar">
+                          <div className="w-10 rounded-xl">
+                            <img src={food.foodImage} />
+                          </div>
+                        </div>
+                      </td>
+                      <td className="py-2 text-sm text-gray-500  whitespace-nowrap">
                         {food.foodName}
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                      <td className="py-2 text-sm text-gray-500  whitespace-nowrap">
                         {food.donatorName}
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap hidden md:block">
+                      <td className="py-2 text-sm text-gray-500  whitespace-nowrap  ">
                         {food.pickupLocation}
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                      <td className="py-2 text-sm text-gray-500  whitespace-nowrap">
                         {food.expiredDate}
                       </td>
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
+                      <td className="py-2 px-4 text-sm whitespace-nowrap text-gray-500  ">
                         <div className="flex items-center gap-x-2">
                           {food.requestDate}
                         </div>

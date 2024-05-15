@@ -45,7 +45,7 @@ const FoodDetails = () => {
   const handleFoodRequest = (data) => {
     data.status = "requested";
     axios
-      .post("http://localhost:5000/requestedFood", data)
+      .post(`${import.meta.env.VITE_API_URL}/requestedFood`, data)
       .then((response) => {
         if (response.data.insertedId) {
           toast.success("Food requested successfully");
@@ -58,7 +58,7 @@ const FoodDetails = () => {
       });
 
     axios
-      .delete(`http://localhost:5000/allFoods/${_id}`)
+      .delete(`${import.meta.env.VITE_API_URL}/allFoods/${_id}`)
       .then(() => {
         console.log("Food deleted successfully");
       })

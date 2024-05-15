@@ -26,13 +26,15 @@ const AddFood = () => {
   const handleAddFood = (data) => {
     console.log(data);
     setLoading(false);
-    axios.post("http://localhost:5000/allFoods", data).then((response) => {
-      console.log(response.data);
-      if (response.data.insertedId) {
-        toast.success("Food added successfully");
-      }
-      navigate("/manage-my-foods");
-    });
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/allFoods`, data)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.insertedId) {
+          toast.success("Food added successfully");
+        }
+        navigate("/manage-my-foods");
+      });
   };
   return (
     <div className="min-h-[calc(100vh-150px)]">

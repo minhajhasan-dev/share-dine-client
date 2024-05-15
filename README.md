@@ -1,6 +1,6 @@
 # Share Dine Client
 
-Welcome to Share Dine! This is a platform where food enthusiasts can connect and share their favorite recipes.
+Welcome to Share Dine! ShareDine connects you with neighbors to share delicious food and fight food waste.
 
 ## Features
 - User registration and login functionality

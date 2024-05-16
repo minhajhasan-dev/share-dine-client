@@ -50,7 +50,7 @@ const FoodDetails = () => {
         if (response.data.insertedId) {
           toast.success("Food requested successfully");
         }
-        navigate("/manage-my-foods");
+        navigate("/my-food-requests");
       })
       .catch((error) => {
         console.error("Error requesting food:", error);

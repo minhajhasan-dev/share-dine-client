@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
@@ -6,16 +7,27 @@ const MyFoodRequests = () => {
   const [foods, setFoods] = useState([]);
   const { user } = useContext(AuthContext);
   const { setLoading } = useContext(AuthContext);
+
+  // tanstack query
+
+  const { isLoading, refetch, isError, error } = useQuery({
+    queryKey: "requestedFood",
+    queryFn: () => getMyRequest(),
+  });
+
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/requestedFood`).then((res) => {
-      // filter with usr email and set to the state
-      const filteredFoods = res.data.filter(
-        (food) => food.userEmail === user.email
-      );
-      setFoods(filteredFoods);
-      setLoading(false);
-    });
-  }, []);
+    getMyRequest();
+  }, [user?.email]);
+
+  const getMyRequest = async () => {
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_API_URL}/requestedFood`
+    );
+    const filteredFoods = data.filter((food) => food.userEmail === user.email);
+    setFoods(filteredFoods);
+    setLoading(false);
+  };
+
   console.log(foods);
   return (
     <div className=" container mx-auto text-center my-10 min-h-[calc(100vh-150px)]">

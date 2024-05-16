@@ -19,9 +19,17 @@ const Login = () => {
   } = useForm();
 
   // handle sign in with email and password
-  const handleSignIn = async (data) => {
+  const handleSignIn = async (info) => {
     try {
-      await signIn(data.email, data.password);
+      const result = await signIn(info.email, info.password);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      );
+      console.log(data);
       toast.success("Sign in successfully");
       navigate("/");
     } catch (error) {
@@ -54,7 +62,15 @@ const Login = () => {
   // github signin
   const handleGithubSignIn = async () => {
     try {
-      await signInWithGithub();
+      const result = await signInWithGithub();
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      );
+      console.log(data);
       toast.success("Sign in with Github successfully");
       navigate("/");
     } catch (error) {

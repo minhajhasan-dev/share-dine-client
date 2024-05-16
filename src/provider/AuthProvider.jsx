@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import axios from "axios";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -44,6 +45,12 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     setLoading(true);
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/logout`,
+      {},
+      { withCredentials: true }
+    );
+    console.log(data);
     return signOut(auth);
   };
 

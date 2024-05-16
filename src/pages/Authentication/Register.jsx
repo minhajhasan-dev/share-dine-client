@@ -1,3 +1,4 @@
+import axios from "axios";
 import Lottie from "lottie-react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -16,14 +17,22 @@ const Register = () => {
   } = useForm();
   const { createUser, updateUserProfile, setUser } = useContext(AuthContext);
 
-  const handleCreate = async (data) => {
+  const handleCreate = async (info) => {
     try {
-      const userCredential = await createUser(data.email, data.password);
+      const userCredential = await createUser(info.email, info.password);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: userCredential?.user?.email,
+        },
+        { withCredentials: true }
+      );
+      console.log(data);
       await updateUserProfile(data.name, data.photoURL);
       setUser({
-        ...userCredential.user,
-        displayName: data.name,
-        photoURL: data.photoURL,
+        ...userCredential?.user,
+        displayName: data?.name,
+        photoURL: data?.photoURL,
       });
       toast.success("Account created successfully");
       navigate("/");

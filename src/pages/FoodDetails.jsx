@@ -126,7 +126,12 @@ const FoodDetails = () => {
         <div className="border mb-2 min-h-16 container mx-auto bg-stone-50 rounded-lg p-3">
           <button
             className="btn w-full hover:bg-[#2B3440] bg-[#2B3440] text-[#D7DDE4]"
-            onClick={() => document.getElementById("my_modal_4").showModal()}
+            onClick={() => {
+              user
+                ? document.getElementById("my_modal_4").showModal()
+                : navigate("/login") +
+                  toast.error("Please login to request food");
+            }}
           >
             Request Food
           </button>

@@ -144,6 +144,7 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal space-x-2 px-1">{Links}</ul>
           </div>
+
           <div className="navbar-end">
             {user ? (
               <>
@@ -195,6 +196,7 @@ const Navbar = () => {
                         >
                           Sign Out
                         </a>
+                        {/* theme controller here */}
                       </div>
                     </div>
                   </div>

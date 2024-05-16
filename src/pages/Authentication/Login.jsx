@@ -1,3 +1,4 @@
+import axios from "axios";
 import Lottie from "lottie-react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -33,7 +34,15 @@ const Login = () => {
   // handle google signin async await way
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle();
+      const result = await signInWithGoogle();
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      );
+      console.log(data);
       toast.success("Sign in with google successfully");
       navigate("/");
     } catch (error) {
